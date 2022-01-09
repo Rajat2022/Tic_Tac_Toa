@@ -1,5 +1,5 @@
 from flask import Flask, request
-from Tic_Tac_Toa import player_details
+from Tic_Tac_Toa import player_details, play_game, table
 
 app = Flask(__name__)
 
@@ -20,19 +20,23 @@ def details():
 
 @app.route("/play", methods=["POST"])
 def play():
+    player_game = request.get_json()
+
     winner = player_details(game_players_details[0], game_players_details[1], game_players_details[2],
                             game_players_details[3])
 
     if winner == game_players_details[1]:
-        # return f"Players_Names = {player1_name, player2_name} \n" \
-        #        f"Players_Symbol = {player1_symbol, player2_symbol} \n" \
         return f"The winner of the game 'TIC-Tac-Toa' is '{game_players_details[0]}' \n" \
                f"{game_players_details.clear()}"
-    if winner == game_players_details[3]:
-        # return f"Players_Names = {player1_name, player2_name} \n" \
-        #        f"Players_Symbol = {player1_symbol, player2_symbol} \n" \
+    elif winner == game_players_details[3]:
         return f"The winner of the game 'TIC-Tac-Toa' is '{game_players_details[2]}' \n" \
                f"{game_players_details.clear()}"
+
+    if any("_" in sublist for sublist in table):
+        play_game(player_game["symbol"], player_game["row"], player_game["column"])
+        return f"Next player play Your Game"
+    else:
+        return f"Game Tie...."
 
 
 app.run(host="0.0.0.0", port=3000, debug=True)
