@@ -105,7 +105,6 @@ def positions(symbols, row, column):
     if [row, column] not in [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]]:
         print()
         print("invalid input try again")
-        positions(symbols, row, column)
 
     else:
         if table[row][column] == "_":
@@ -116,7 +115,6 @@ def positions(symbols, row, column):
         else:
             print()
             print("invalid position please enter correct position")
-            positions(symbols, row, column)
 
 
 # play_game function/method is passing symbol, row, column to positions function/method
