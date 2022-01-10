@@ -55,6 +55,8 @@ def play():
                     return f"{game_players_details[0]} play your game"
                 else:
                     return f"position is already filled"
+        else:
+            return f"please enter the correct symbol"
     else:
         return f"Game Tie...."
 
