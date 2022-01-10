@@ -33,8 +33,28 @@ def play():
                f"{game_players_details.clear()}"
 
     if any("_" in sublist for sublist in table):
-        play_game(player_game["symbol"], player_game["row"], player_game["column"])
-        return f"Next player play Your Game"
+        if player_game["symbol"] == game_players_details[1]:
+            if [player_game["row"], player_game["column"]] not in [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2],
+                                                                   [2, 0], [2, 1],
+                                                                   [2, 2]]:
+                return f"invalid input give correct position"
+            else:
+                if table[player_game["row"]][player_game["column"]] == "_":
+                    play_game(player_game["symbol"], player_game["row"], player_game["column"])
+                    return f"{game_players_details[2]} play your game"
+                else:
+                    return f"position is already filled"
+        elif player_game["symbol"] == game_players_details[3]:
+            if [player_game["row"], player_game["column"]] not in [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2],
+                                                                   [2, 0], [2, 1],
+                                                                   [2, 2]]:
+                return f"invalid input give correct position"
+            else:
+                if table[player_game["row"]][player_game["column"]] == "_":
+                    play_game(player_game["symbol"], player_game["row"], player_game["column"])
+                    return f"{game_players_details[0]} play your game"
+                else:
+                    return f"position is already filled"
     else:
         return f"Game Tie...."
 
